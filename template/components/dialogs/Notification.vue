@@ -13,7 +13,7 @@
   >
     <div class="d-flex align-center">
       <div class="mr-2">
-        {{ text }}
+        \{{ text }}
       </div>
     </div>
   </v-alert>

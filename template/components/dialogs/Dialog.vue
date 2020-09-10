@@ -8,7 +8,7 @@
     </v-card-text>
     <v-card-actions>
       <v-btn @click="$emit('submit')">
-        {{ value }}
+        \{{ value }}
       </v-btn>
       <v-btn @click="$emit('submit', true)">
         Ok

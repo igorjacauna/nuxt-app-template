@@ -16,7 +16,7 @@
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>\{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
@@ -34,7 +34,7 @@
         icon
         @click.stop="miniVariant = !miniVariant"
       >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+        <v-icon>mdi-\{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
       <v-btn
         icon
@@ -83,7 +83,7 @@
       :absolute="!fixed"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; \{{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
