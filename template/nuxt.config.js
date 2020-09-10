@@ -27,9 +27,11 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  {{#isEnabled plugins 'auth'}}
   router: {
     middleware: ['auth']
   },
+  {{/isEnabled}}
   /*
   ** Global CSS
   */
@@ -60,35 +62,27 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    {{#isEnabled plugins 'axios'}}
     '@nuxtjs/axios',
+    {{/isEnabled}}
+    {{#isEnabled plugins 'pwa'}}
     '@nuxtjs/pwa',
-    '@nuxtjs/auth'
+    {{/isEnabled}}
+    {{#isEnabled plugins 'auth'}}
+    '@nuxtjs/auth',
+    {{/isEnabled}}
+    {{#isEnabled plugins 'firebase'}}
+    '@nuxtjs/firebase',
+    {{/isEnabled}}
   ],
+  {{#isEnabled plugins 'axios'}}
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {},
-  /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
-    theme: {
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
-  },
+  {{/isEnabled}}
+  {{#isEnabled plugins 'firebase'}}
   firebase: {
     config: {
       production: {
@@ -114,6 +108,27 @@ export default {
     },
     services: {
       auth: true
+    }
+  }
+  {{/isEnabled}}
+  /*
+  ** vuetify module configuration
+  ** https://github.com/nuxt-community/vuetify-module
+  */
+  vuetify: {
+    customVariables: ['~/assets/variables.scss'],
+    theme: {
+      themes: {
+        dark: {
+          primary: colors.blue.darken2,
+          accent: colors.grey.darken3,
+          secondary: colors.amber.darken3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3
+        }
+      }
     }
   }
 }

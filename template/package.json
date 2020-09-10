@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "{{ name }}",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -11,12 +11,22 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
+    {{#isEnabled plugins 'auth'}}
     "@nuxtjs/auth": "^4.9.1",
+    {{/isEnabled}}
+    {{#isEnabled plugins 'axios'}}
     "@nuxtjs/axios": "^5.12.0",
+    {{/isEnabled}}
+    {{#isEnabled plugins 'firebase'}}
     "@nuxtjs/firebase": "^6.1.1",
+    {{/isEnabled}}
+    {{#isEnabled plugins 'pwa'}}
     "@nuxtjs/pwa": "^3.0.0-beta.20",
+    {{/isEnabled}}
     "@nuxtjs/router-extras": "^1.1.0",
+    {{#isEnabled plugins 'firebase'}}
     "firebase": "^7.19.1",
+    {{/isEnabled}}
     "nuxt": "^2.14.0",
     "vuedl": "^0.3.10"
   },

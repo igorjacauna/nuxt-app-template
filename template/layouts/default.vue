@@ -113,5 +113,46 @@ export default {
       title: 'Vuetify.js'
     }
   }
+  {{#isEnabled plugins 'firebase'}},
+  mounted () {
+    this.$fireAuthObj().onAuthStateChanged(async (user) => {
+      if (user) {
+        const permissions = ((await user.getIdTokenResult()).claims)
+        {{#isEnabled plugins 'auth'}}
+        this.$auth.setUser({
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+          admin: permissions.admin,
+          collaborator: permissions.collaborator
+        })
+        {{/isEnabled}}
+      } {{#isEnabled plugins 'auth'}}else {
+        this.$auth.logout()
+      }
+      {{/isEnabled}}
+    })
+  },
+  methods: {
+    async login () {
+      try {
+        const googleProvider = new this.$fireAuthObj.GoogleAuthProvider()
+        googleProvider.setCustomParameters({
+          redirect_uri: 'http://localhost:3000'
+        })
+        await this.$fireAuth.signInWithPopup(googleProvider)
+      } catch (e) {
+        this.handleError(e)
+      }
+    },
+    async logout () {
+      try {
+        await this.$fireAuthObj().signOut()
+      } catch (e) {
+        this.handleError(e)
+      }
+    }
+  }
+  {{/isEnabled}}
 }
 </script>
