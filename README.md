@@ -8,5 +8,5 @@
 - Notifications
 
 npm install -g @vue/cli-init
-# vue init now works exactly the same as vue-cli@2.x
+
 vue init igorjacauna/nuxt-app-template my-project
